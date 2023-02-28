@@ -25,7 +25,13 @@ div.box {
     grid-auto-rows: 1em;
 }
 
+/* These represent the invisible grid lines */
 div.box>div {
-    /* border: thin solid red; */
     grid-column: 1 / span 37;
+}
+
+div.box>div.thing {
+    margin: 5px 5px 0 5px;
+    border: 6px double darkslategray;
+    border-radius: 15px;
 }
