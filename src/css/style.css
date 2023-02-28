@@ -1,0 +1,31 @@
+:root {
+    --gap: 1.2em;
+}
+
+body {
+    background-color: indianred;
+}
+
+div#main {
+    margin: 0 auto;
+    padding: var(--gap);
+    gap: var(--gap);
+    /* width: 98%; */
+    height: 92vh;
+    display: grid;
+    grid-template-columns: [uno] 1fr [dos] 1fr [tres] 1fr [quarto];
+    grid-auto-rows: 1fr;
+}
+
+div.box {
+    border: 2px dashed chartreuse;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(37, 1.02em);
+    grid-auto-rows: 1em;
+}
+
+div.box>div {
+    /* border: thin solid red; */
+    grid-column: 1 / span 37;
+}
