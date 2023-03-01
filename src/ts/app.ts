@@ -8,8 +8,10 @@ function gridTheBoxes(nRows: number, rowSpan: number) {
         let gridRowIndex = 1;
         for (let rowNum = 0; rowNum < nRows; rowNum++) {
             const row = document.createElement('div');
+            row.classList.add('drop-target');
             row.style.gridRow = `${gridRowIndex} / span ${rowSpan}`;
             gridRowIndex += rowSpan;
+
             box.appendChild(row);
         }
     }
@@ -17,12 +19,38 @@ function gridTheBoxes(nRows: number, rowSpan: number) {
 
 gridTheBoxes(14, 2);
 
-const box1 = document.querySelector('div.box:nth-child(1)');
+function placeAThing(box: HTMLDivElement, rowStart: number, colStart: number, rowEnd: number, colEnd: number, color: string) {
+    const thing = document.createElement('div');
+    thing.setAttribute('draggable', 'true');
+    thing.classList.add('thing');
+    thing.style.backgroundColor = color;
+    thing.style.gridArea = `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`;
+
+    box?.appendChild(thing);
+}
+
+// HERE!!!!
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event
+
+const box1 = document.querySelector('div.box:nth-child(1)') as HTMLDivElement;
+const box2 = document.querySelector('div.box:nth-child(2)') as HTMLDivElement;
+
+placeAThing(box1, 1, 1, 5, 38, 'tomato');
+placeAThing(box2, 5, 1, 10, 38, 'orange');
 
 
-const thing1 = document.createElement('div');
-thing1.classList.add('thing');
-thing1.style.backgroundColor = "lightblue";
-thing1.style.gridArea = "1 / 1 / 5 / 38";
+function dragThings() {
+    let dragged: HTMLDivElement;
 
-box1?.appendChild(thing1);
+    const draggables = document.querySelectorAll('div.thing') as NodeListOf<HTMLDivElement>;
+    const targets = document.querySelectorAll('div.drop-target') as NodeListOf<HTMLDivElement>;
+
+    draggables.forEach((draggable) => {
+        draggable.addEventListener('dragstart', (evt) => {
+            dragged = evt.target as HTMLDivElement;
+            console.log(dragged);
+        });
+    });
+}
+
+dragThings();

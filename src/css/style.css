@@ -35,3 +35,8 @@ div.box>div.thing {
     border: 6px double darkslategray;
     border-radius: 15px;
 }
+
+div.dragging {
+    opacity: 0.2;
+    border: thin dashed black;
+}
