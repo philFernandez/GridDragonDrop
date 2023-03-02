@@ -44,52 +44,40 @@ function isDigit(n: string): boolean {
 
 
 function dragThings() {
-    let dragged: HTMLDivElement;
+    let dragged: HTMLElement;
 
     const draggables = document.querySelectorAll('div.thing') as NodeListOf<HTMLDivElement>;
     const targets = document.querySelectorAll('div.drop-target') as NodeListOf<HTMLDivElement>;
 
 
     for (let draggable of draggables) {
-        draggable.addEventListener('dragstart', (evt) => {
+        draggable.addEventListener('dragstart', function (evt) {
             dragged = evt.target as HTMLDivElement;
-            console.log(`dragstart dragged :: ${dragged}`);
+            dragged.classList.add('dragging');
+
+        });
+        draggable.addEventListener('dragend', function (evt) {
+            dragged.classList.remove('dragging');
         });
     }
 
     for (let target of targets) {
         target.addEventListener('dragover', (evt) => {
             evt.preventDefault();
-            console.log(`dragover dragged :: ${dragged}`);
         });
 
         target.addEventListener("drop", (evt) => {
             evt.preventDefault();
 
-
             const dropTarget = evt.target as HTMLElement;
-
             const targetStyle = dropTarget.getAttribute("style")?.split(' ')!;
             const draggedStyle = dragged.getAttribute("style")?.split(' ')!;
-
-            console.log('target:', targetStyle);
-            console.log('dragged:', draggedStyle);
-
-
             const span = parseInt(draggedStyle[7]) - parseInt(draggedStyle[3]);
-            console.log('span:', span);
-
 
             draggedStyle[3] = targetStyle[1];
             draggedStyle[7] = `${parseInt(targetStyle[1]) + span}`;
 
-
-
-
             dragged.setAttribute('style', draggedStyle.join(' '));
-
-            console.log('dragged:', draggedStyle);
-
 
         });
     }
