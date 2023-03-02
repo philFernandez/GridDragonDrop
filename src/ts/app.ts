@@ -9,7 +9,6 @@ function gridTheBoxes(nRows: number, rowSpan: number) {
         for (let rowNum = 0; rowNum < nRows; rowNum++) {
             const row = document.createElement('div');
             row.classList.add('drop-target');
-            row.classList.add('dropzone');
             row.style.gridRow = `${gridRowIndex} / span ${rowSpan}`;
             gridRowIndex += rowSpan;
 
@@ -91,18 +90,6 @@ function dragThings() {
 
             console.log('dragged:', draggedStyle);
 
-
-
-
-
-
-
-
-
-
-
-            // dragged.parentNode?.removeChild(dragged);
-            // dropTarget.appendChild(dragged);
 
         });
     }

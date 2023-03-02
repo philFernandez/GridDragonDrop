@@ -40,3 +40,7 @@ div.dragging {
     opacity: 0.2;
     border: thin dashed black;
 }
+
+div.drop-target {
+    border: thin dotted grey;
+}
