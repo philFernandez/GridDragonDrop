@@ -59,16 +59,12 @@ function dragThings() {
         draggable.addEventListener('dragend', function (evt) {
             dragged.classList.remove('dragging');
         });
+
     }
 
     for (let target of targets) {
         target.addEventListener('dragover', (evt) => {
             evt.preventDefault();
-        });
-
-        target.addEventListener("drop", (evt) => {
-            evt.preventDefault();
-
             const dropTarget = evt.target as HTMLElement;
             const targetStyle = dropTarget.getAttribute("style")?.split(' ')!;
             const draggedStyle = dragged.getAttribute("style")?.split(' ')!;
@@ -78,8 +74,8 @@ function dragThings() {
             draggedStyle[7] = `${parseInt(targetStyle[1]) + span}`;
 
             dragged.setAttribute('style', draggedStyle.join(' '));
-
         });
+
     }
 
 }
