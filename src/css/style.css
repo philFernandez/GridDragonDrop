@@ -37,10 +37,14 @@ div.box>div.thing {
 }
 
 div.dragging {
-    opacity: 0.2;
-    border: thin dashed black;
+    opacity: 0.4;
 }
 
 div.drop-target {
-    border: thin dotted grey;
+    border-bottom: thin dotted chartreuse;
+}
+
+canvas {
+    position: absolute;
+    left: -100%;
 }

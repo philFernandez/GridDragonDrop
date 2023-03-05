@@ -34,9 +34,11 @@ function placeAThing(box: HTMLDivElement, rowStart: number, colStart: number, ro
 
 const box1 = document.querySelector('div.box:nth-child(1)') as HTMLDivElement;
 const box2 = document.querySelector('div.box:nth-child(2)') as HTMLDivElement;
+const box3 = document.querySelector('div.box:nth-child(3)') as HTMLDivElement;
 
 placeAThing(box1, 1, 1, 5, 38, 'tomato');
 placeAThing(box2, 5, 1, 10, 38, 'orange');
+placeAThing(box3, 2, 1, 17, 38, 'pink');
 
 function isDigit(n: string): boolean {
     return !isNaN(n as any);
@@ -44,6 +46,7 @@ function isDigit(n: string): boolean {
 
 
 function dragThings() {
+
     let dragged: HTMLElement;
 
     const draggables = document.querySelectorAll('div.thing') as NodeListOf<HTMLDivElement>;
@@ -55,6 +58,10 @@ function dragThings() {
             dragged = evt.target as HTMLDivElement;
             dragged.classList.add('dragging');
 
+
+            // const dt = evt.dataTransfer;
+            // dt?.setDragImage(document.createElement('span'), 0, 0);
+
         });
         draggable.addEventListener('dragend', function (evt) {
             dragged.classList.remove('dragging');
@@ -63,8 +70,14 @@ function dragThings() {
     }
 
     for (let target of targets) {
+        target.addEventListener('dragenter', (evt) => {
+            console.log("ENTER");
+        });
+
         target.addEventListener('dragover', (evt) => {
-            evt.preventDefault();
+            if (evt.dataTransfer) {
+                evt.dataTransfer.dropEffect = "link";
+            }
             const dropTarget = evt.target as HTMLElement;
             const targetStyle = dropTarget.getAttribute("style")?.split(' ')!;
             const draggedStyle = dragged.getAttribute("style")?.split(' ')!;
