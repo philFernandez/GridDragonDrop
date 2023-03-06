@@ -59,8 +59,8 @@ function dragThings() {
             dragged.classList.add('dragging');
 
 
-            // const dt = evt.dataTransfer;
-            // dt?.setDragImage(document.createElement('span'), 0, 0);
+            const dt = evt.dataTransfer;
+            dt?.setDragImage(document.createElement('span'), 0, 0);
 
         });
         draggable.addEventListener('dragend', function (evt) {

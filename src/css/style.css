@@ -10,7 +10,6 @@ div#main {
     margin: 0 auto;
     padding: var(--gap);
     gap: var(--gap);
-    /* width: 98%; */
     height: 92vh;
     display: grid;
     grid-template-columns: [uno] 1fr [dos] 1fr [tres] 1fr [quarto];
@@ -25,7 +24,7 @@ div.box {
     grid-auto-rows: 1em;
 }
 
-/* These represent the invisible grid lines */
+/* These represent the grid lines */
 div.box>div {
     grid-column: 1 / span 37;
 }
@@ -38,6 +37,7 @@ div.box>div.thing {
 
 div.dragging {
     opacity: 0.4;
+    height: 0.625em;
 }
 
 div.drop-target {
